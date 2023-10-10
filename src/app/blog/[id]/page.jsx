@@ -1,7 +1,8 @@
 import React from "react";
+import styles from "./page.module.css";
 
 const blogpost = () => {
-  return <div>blogpost</div>;
+  return <div className={styles.container}>blogpost</div>;
 };
 
 export default blogpost;
