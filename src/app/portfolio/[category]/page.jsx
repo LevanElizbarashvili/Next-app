@@ -1,21 +1,14 @@
 import React from "react";
 import styles from "./page.module.css";
-import Link from "next/link";
+import Button from "@/components/button/Button";
 import Image from "next/image";
 
-const blog = () => {
+const page = ({ params }) => {
+  console.log(params);
   return (
-    <div className={styles.mainContainer}>
-      <Link href="/blog/testId" className={styles.container}>
-        <div className={styles.imgContainer}>
-          <Image
-            src="https://images.pexels.com/photos/3194521/pexels-photo-3194521.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-            width={400}
-            height={300}
-            alt=""
-            className={styles.img}
-          />
-        </div>
+    <div className={styles.container}>
+      <h1 className={styles.cattitle}>{params.category}</h1>
+      <div className={styles.item}>
         <div className={styles.content}>
           <h1 className={styles.title}>Creative Portfolio</h1>
           <p className={styles.description}>
@@ -24,18 +17,18 @@ const blog = () => {
             ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
             aliquip ex ea commodo consequat.
           </p>
+          <Button url="#" text="See More" />
         </div>
-      </Link>
-      <Link href="/blog/testId" className={styles.container}>
         <div className={styles.imgContainer}>
           <Image
             src="https://images.pexels.com/photos/3194521/pexels-photo-3194521.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-            width={400}
-            height={300}
+            fill={true}
             alt=""
             className={styles.img}
           />
         </div>
+      </div>
+      <div className={styles.item}>
         <div className={styles.content}>
           <h1 className={styles.title}>Creative Portfolio</h1>
           <p className={styles.description}>
@@ -44,18 +37,18 @@ const blog = () => {
             ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
             aliquip ex ea commodo consequat.
           </p>
+          <Button url="#" text="See More" />
         </div>
-      </Link>
-      <Link href="/blog/testId" className={styles.container}>
         <div className={styles.imgContainer}>
           <Image
             src="https://images.pexels.com/photos/3194521/pexels-photo-3194521.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-            width={400}
-            height={300}
+            fill={true}
             alt=""
             className={styles.img}
           />
         </div>
+      </div>
+      <div className={styles.item}>
         <div className={styles.content}>
           <h1 className={styles.title}>Creative Portfolio</h1>
           <p className={styles.description}>
@@ -64,10 +57,19 @@ const blog = () => {
             ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
             aliquip ex ea commodo consequat.
           </p>
+          <Button url="#" text="See More" />
         </div>
-      </Link>
+        <div className={styles.imgContainer}>
+          <Image
+            src="https://images.pexels.com/photos/3194521/pexels-photo-3194521.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            fill={true}
+            alt=""
+            className={styles.img}
+          />
+        </div>
+      </div>
     </div>
   );
 };
 
-export default blog;
+export default page;
