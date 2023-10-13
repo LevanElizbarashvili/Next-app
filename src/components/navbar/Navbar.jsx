@@ -17,7 +17,7 @@ const Navbar = () => {
   return (
     <div className={styles.container}>
       <Link href={"/"} className={styles.logo}>
-        Name
+        NXT
       </Link>
       <div className={styles.links}>
         <DarkModeToggle />

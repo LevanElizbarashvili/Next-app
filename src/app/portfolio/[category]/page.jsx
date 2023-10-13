@@ -2,74 +2,43 @@ import React from "react";
 import styles from "./page.module.css";
 import Button from "@/components/button/Button";
 import Image from "next/image";
+import { items } from "./data";
+import { notFound } from "next/navigation";
 
-const page = ({ params }) => {
-  console.log(params);
+const getData = (category) => {
+  const data = items[category];
+  if (data) {
+    return data;
+  }
+  return notFound();
+};
+
+const Category = ({ params }) => {
+  const data = getData(params.category);
   return (
     <div className={styles.container}>
       <h1 className={styles.cattitle}>{params.category}</h1>
-      <div className={styles.item}>
-        <div className={styles.content}>
-          <h1 className={styles.title}>Creative Portfolio</h1>
-          <p className={styles.description}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat.
-          </p>
-          <Button url="#" text="See More" />
-        </div>
-        <div className={styles.imgContainer}>
-          <Image
-            src="https://images.pexels.com/photos/3194521/pexels-photo-3194521.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-            fill={true}
-            alt=""
-            className={styles.img}
-          />
-        </div>
-      </div>
-      <div className={styles.item}>
-        <div className={styles.content}>
-          <h1 className={styles.title}>Creative Portfolio</h1>
-          <p className={styles.description}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat.
-          </p>
-          <Button url="#" text="See More" />
-        </div>
-        <div className={styles.imgContainer}>
-          <Image
-            src="https://images.pexels.com/photos/3194521/pexels-photo-3194521.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-            fill={true}
-            alt=""
-            className={styles.img}
-          />
-        </div>
-      </div>
-      <div className={styles.item}>
-        <div className={styles.content}>
-          <h1 className={styles.title}>Creative Portfolio</h1>
-          <p className={styles.description}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat.
-          </p>
-          <Button url="#" text="See More" />
-        </div>
-        <div className={styles.imgContainer}>
-          <Image
-            src="https://images.pexels.com/photos/3194521/pexels-photo-3194521.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-            fill={true}
-            alt=""
-            className={styles.img}
-          />
-        </div>
-      </div>
+      {data.map((item) => {
+        return (
+          <div className={styles.item} key={item.id}>
+            <div className={styles.content}>
+              <h1 className={styles.title}>{item.title}</h1>
+              <p className={styles.description}>{item.desc}</p>
+              <Button url="#" text="See More" />
+            </div>
+            <div className={styles.imgContainer}>
+              <Image
+                src={item.image}
+                alt=""
+                fill={true}
+                className={styles.img}
+              />
+            </div>
+          </div>
+        );
+      })}
     </div>
   );
 };
 
-export default page;
+export default Category;
