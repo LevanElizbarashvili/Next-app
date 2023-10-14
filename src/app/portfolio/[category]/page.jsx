@@ -13,6 +13,15 @@ const getData = (category) => {
   return notFound();
 };
 
+export async function generateMetadata({ params }) {
+  const post = await getData(params.category);
+  console.log(post);
+  return {
+    title: params.category,
+    description: post[0].desc,
+  };
+}
+
 const Category = ({ params }) => {
   const data = getData(params.category);
   return (

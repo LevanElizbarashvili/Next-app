@@ -3,69 +3,50 @@ import styles from "./page.module.css";
 import Link from "next/link";
 import Image from "next/image";
 
-const blog = () => {
+async function getData() {
+  const res = await fetch("http://localhost:3000/api/posts", {
+    cache: "no-store",
+  });
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch data");
+  }
+  const data = res.json();
+  return data;
+}
+
+export const metadata = {
+  title: "NXT - Blog",
+  description: "Our Blogs",
+};
+
+const blog = async () => {
+  const data = await getData();
   return (
     <div className={styles.mainContainer}>
-      <Link href="/blog/testId" className={styles.container}>
-        <div className={styles.imgContainer}>
-          <Image
-            src="https://images.pexels.com/photos/3194521/pexels-photo-3194521.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-            width={400}
-            height={300}
-            alt=""
-            className={styles.img}
-          />
-        </div>
-        <div className={styles.content}>
-          <h1 className={styles.title}>Creative Portfolio</h1>
-          <p className={styles.description}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat.
-          </p>
-        </div>
-      </Link>
-      <Link href="/blog/testId" className={styles.container}>
-        <div className={styles.imgContainer}>
-          <Image
-            src="https://images.pexels.com/photos/3194521/pexels-photo-3194521.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-            width={400}
-            height={300}
-            alt=""
-            className={styles.img}
-          />
-        </div>
-        <div className={styles.content}>
-          <h1 className={styles.title}>Creative Portfolio</h1>
-          <p className={styles.description}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat.
-          </p>
-        </div>
-      </Link>
-      <Link href="/blog/testId" className={styles.container}>
-        <div className={styles.imgContainer}>
-          <Image
-            src="https://images.pexels.com/photos/3194521/pexels-photo-3194521.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-            width={400}
-            height={300}
-            alt=""
-            className={styles.img}
-          />
-        </div>
-        <div className={styles.content}>
-          <h1 className={styles.title}>Creative Portfolio</h1>
-          <p className={styles.description}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat.
-          </p>
-        </div>
-      </Link>
+      {data.map((item) => {
+        return (
+          <Link
+            href={`/blog/${item._id}`}
+            className={styles.container}
+            key={item.id}
+          >
+            <div className={styles.imgContainer}>
+              <Image
+                src={item.image}
+                width={400}
+                height={300}
+                alt=""
+                className={styles.img}
+              />
+            </div>
+            <div className={styles.content}>
+              <h1 className={styles.title}>{item.title}</h1>
+              <p className={styles.description}>{item.desc}</p>
+            </div>
+          </Link>
+        );
+      })}
     </div>
   );
 };
