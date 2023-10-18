@@ -15,7 +15,6 @@ const getData = (category) => {
 
 export async function generateMetadata({ params }) {
   const post = await getData(params.category);
-  console.log(post);
   return {
     title: params.category,
     description: post[0].desc,
