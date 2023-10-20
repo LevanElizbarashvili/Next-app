@@ -12,7 +12,7 @@ const Contact = () => {
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>Let's Keep In Touch</h1>
-      <divl className={styles.content}>
+      <div className={styles.content}>
         <div className={styles.imgContainer}>
           <Image
             src="/contact.png"
@@ -35,7 +35,7 @@ const Contact = () => {
           <textarea cols={30} rows={10} className={styles.textArea}></textarea>
           <Button className={styles.button} url="#" text="Send" />
         </form>
-      </divl>
+      </div>
     </div>
   );
 };

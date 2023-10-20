@@ -19,7 +19,6 @@ export default function RootLayout({ children }) {
         <ThemeProvider>
           <AuthProvider>
             <div className="container">
-              {" "}
               <Navbar />
               {children}
               <Footer />
