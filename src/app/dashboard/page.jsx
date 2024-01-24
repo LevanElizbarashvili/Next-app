@@ -39,13 +39,14 @@ const dashboard = () => {
         body: JSON.stringify({
           title,
           desc,
-          Image,
+          img,
           content,
-          username: session.data.user.name,
+          username: session.data?.user.name,
         }),
       });
-    } catch (error) {
-      console.log(error);
+      e.target.reset();
+    } catch (err) {
+      console.log(err);
     }
   };
 
@@ -58,7 +59,7 @@ const dashboard = () => {
             : data?.map((post) => {
                 <div className="styles.post" key={post.id}>
                   <div className={styles.imgContainer}>
-                    <Image src={post.image} alt="" />
+                    <Image src={post.img} alt="" />
                   </div>
                   <h2 className={styles.postTitle}>{post.title}</h2>
                   <span

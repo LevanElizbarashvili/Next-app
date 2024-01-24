@@ -30,6 +30,7 @@ export const POST = async (request) => {
 
     return new NextResponse("Post has been created", { status: 201 });
   } catch (err) {
-    return new NextResponse("Database Error", { status: 500 });
+    console.error("Database Error:", err);
+    return new NextResponse("Database Error: " + err.message, { status: 500 });
   }
 };
